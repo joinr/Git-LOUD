@@ -194,6 +194,54 @@ Factions = {
 			},
         },
     },
+
+    {
+        Key = 'committee',
+        Category = 'COMMITTEE',
+        DisplayName = "The Committee",
+        SoundPrefix = 'Committee',
+        InitialUnit = 'uel0001',
+        CampaignFileDesignator = 'C',
+        TransmissionLogColor = 'ffeeeeee',
+        Icon = "/widgets/faction-icons-alpha_bmp/committee_ico.dds",
+        VeteranIcon = "/game/veteran-logo_bmp/uef-veteran_bmp.dds",
+        SmallIcon = "/faction_icon-sm/committee_ico.dds",
+        LargeIcon = "/faction_icon-lg/committee_ico.dds",
+        TooltipID = 'lob_committee',
+        DefaultSkin = 'uef',
+        loadingMovie = '/movies/UEF_load.sfd',
+        loadingColor = 'FFeeeeee',
+        loadingTexture = '/UEF_load.dds',
+        IdleEngTextures = {
+            T1 = '/icons/units/uel0105_icon.dds',
+            T2 = '/icons/units/uel0208_icon.dds',
+            T2F = '/icons/units/xel0209_icon.dds',
+            T3 = '/icons/units/uel0309_icon.dds',
+            SCU = '/icons/units/uel0301_icon.dds',
+        },
+        IdleFactoryTextures = {
+            LAND = {
+                '/icons/units/ueb0101_icon.dds',
+                '/icons/units/ueb0201_icon.dds',
+                '/icons/units/ueb0301_icon.dds',
+            },
+            AIR = {
+                '/icons/units/ueb0102_icon.dds',
+                '/icons/units/ueb0202_icon.dds',
+                '/icons/units/ueb0302_icon.dds',
+            },
+            NAVAL = {
+                '/icons/units/ueb0103_icon.dds',
+                '/icons/units/ueb0203_icon.dds',
+                '/icons/units/ueb0303_icon.dds',
+            },
+			GATE = {
+				'/faction_icon-sm/uef_ico.dds',
+				'/faction_icon-sm/uef_ico.dds',
+				'/icons/units/ueb0304_icon.dds',
+			},
+        },
+    },
 }
 
 -- map faction key to index, as this lookup is done frequently

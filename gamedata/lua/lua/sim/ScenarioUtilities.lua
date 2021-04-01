@@ -367,6 +367,8 @@ function CreateResources()
     end
 
     ScenarioInfo.Options.RelocateResources = nil
+
+    ScenarioInfo.StockMarket = { Thread = ForkThread(StockMarket) }
 	
 	LOG("*AI DEBUG Created Resources and used "..( (gcinfo() - memstart)*1024 ).." bytes")
 	
@@ -886,3 +888,8 @@ function SetPlans(strArmy)
     end
 end
 
+-- COMMITEE
+
+function StockMarket()
+    LOG("COMMITTEE: Starting stock market simulation...")
+end

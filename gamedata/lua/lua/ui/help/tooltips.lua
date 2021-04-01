@@ -901,6 +901,10 @@ Tooltips = {
         title = "Seraphim",
         description = ''
     },
+    lob_committee = {
+        text = "The Committee",
+        body = ""
+    },
 
     lob_team_none = {
         title = 'No Team',
