@@ -146,6 +146,13 @@ local nameFilters = {
                     return table.find(__blueprints[unitID].Categories, 'SERAPHIM') -- string.sub(unitID, 2, 2) == 's'
                 end,
             },
+            {
+                title = 'Committee',
+                key = 'committee',
+                sortFunc = function(unitID)
+                    return table.find(__blueprints[unitID].Categories, 'COMMITTEE') -- string.sub(unitID, 2, 2) == 'c'
+                end,
+            }
         },
     },
     {
