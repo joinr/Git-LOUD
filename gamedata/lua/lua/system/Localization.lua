@@ -3,15 +3,14 @@ local LOUDSUB = string.sub
 local LOUDGSUB = string.gsub
 
 
-
 -- Special tokens that can be included in a loc string via {g Player} etc. The
 -- Player name gets replaced with the current selected player name.
 LocGlobals = {
-    PlayerName="Player",
-    LBrace="{",
-    RBrace="}",
-    LT="<",
-    GT=">"
+    PlayerName = "Player",
+    LBrace = "{",
+    RBrace = "}",
+    LT = "<",
+    GT = ">"
 }
 
 
@@ -22,7 +21,7 @@ end
 -- Check whether the given language is installed; if so, return it;
 -- otherwise return some language that is installed.
 local function okLanguage(la)
-    if la!='' and exists(dbFilename(la)) then
+    if la != '' and exists(dbFilename(la)) then
         return la
     end
 
@@ -38,7 +37,7 @@ end
 local function loadLanguage(la)
     local la = okLanguage(la)
 
-    # reload strings file...
+    -- reload strings file...
     local newdb = {}
     doscript(dbFilename(la), newdb)
     __language = la
@@ -54,7 +53,7 @@ end
 
 -- Called from LOUDGSUB in LocExpand() to expand a single {k v} element
 local function LocSubFn(op, ident)
-    if op=='i' then
+    if op == 'i' then
         local s = loc_table[ident]
         if s then
             return LocExpand(s)
@@ -62,7 +61,7 @@ local function LocSubFn(op, ident)
             WARN('missing localization key for include: '..ident)
             return "{unknown key: "..ident.."}"
         end
-    elseif op=='g' then
+    elseif op == 'g' then
         local s = LocGlobals[ident]
         if iscallable(s) then
             s = s()
@@ -82,7 +81,7 @@ end
 
 -- Given some text from the loc DB, recursively apply formatting directives
 function LocExpand(s)
-    # Look for braces {} in text
+    -- Look for braces {} in text
     return (LOUDGSUB(s, "{(%w+) ([^{}]*)}", LocSubFn))
 end
 
@@ -97,24 +96,24 @@ function LOC(s)
         return s
     end
 
-    if LOUDSUB(s,1,5) != [[<LOC ]] then
-        # This string doesn't have a <LOC key> tag
+    if LOUDSUB(s, 1, 5) != [[<LOC ]] then
+        -- This string doesn't have a <LOC key> tag
         return LocExpand(s)
     end
 
-    local i = string.find(s,">")
+    local i = string.find(s, ">")
     if not i then
-        # Missing the second half of <LOC> tag
-        WARN(_TRACEBACK('String has malformed loc tag: ',s))
+        -- Missing the second half of <LOC> tag
+        WARN(_TRACEBACK('String has malformed loc tag: ', s))
         return s
     end
 
-    local key = LOUDSUB(s,6,i-1)
+    local key = LOUDSUB(s, 6, i - 1)
 
     local r = loc_table[key]
     if not r then
-        r = LOUDSUB(s,i+1)
-        if r=="" then
+        r = LOUDSUB(s,i + 1)
+        if r == "" then
             r = key
         end
     end
@@ -125,8 +124,8 @@ end
 
 -- Like string.format, but applies LOC() to all string args first.
 function LOCF(...)
-    for k,v in arg do
-        if type(v)=='string' then
+    for k, v in arg do
+        if type(v) == 'string' then
             arg[k] = LOC(v)
         end
     end
@@ -137,7 +136,7 @@ end
 -- Call LOC() on all elements of a table
 function LOC_ALL(t)
     r = {}
-    for k,v in t do
+    for k, v in t do
         r[k] = LOC(v)
     end
     return r

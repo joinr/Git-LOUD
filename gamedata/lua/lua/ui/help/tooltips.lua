@@ -503,6 +503,10 @@ Tooltips = {
     -- *** Options: Interface
     -- **********************
 
+    options_lang = {
+        title = "Language",
+        description = "Requires a game restart to take full effect"
+    },
     options_subtitles = {
         title = "Display Subtitles",
         description = "Toggles the display of subtitles during movies",

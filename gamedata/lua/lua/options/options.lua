@@ -192,7 +192,7 @@ options = {
                 end,
                 custom = {
                     states = {
-                        {text = "OfF", key = 0 },
+                        {text = "Off", key = 0 },
                         {text = "On", key = 1 },
                     },
                 },
@@ -284,6 +284,23 @@ options = {
         title = "Interface",
         key = 'ui',
         items = {
+            {
+                title = "Language",
+                key = 'lang',
+                type = 'toggle',
+                default = 'us',
+                set = function(key, value, startup)
+                    import('/lua/system/Localization.lua').language(value)
+                end,
+                custom = {
+                    states = {
+                        -- TODO: Label choices in both current language and option's
+                        -- language (e.g. "Dutch/Nederlands", "Russian/русский")
+                        {text = "English (US)", key = 'us'},
+                        {text = "Dutch", key = 'nl'},
+                    },
+                }
+            },
             {
                 title = "Display Subtitles",
                 key = 'subtitles',
