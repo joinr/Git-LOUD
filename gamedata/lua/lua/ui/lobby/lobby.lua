@@ -29,6 +29,11 @@ local gameColors = import('/lua/gamecolors.lua').GameColors
 local numOpenSlots = LobbyComm.maxPlayerSlots
 local formattedOptions = {}
 
+
+--Profiler....
+LOG("<Profiling>:loading profiler")
+local profiler = import('/lua/profiler.lua')
+
 local teamIcons = {
     '/lobby/team_icons/team_no_icon.dds',
     '/lobby/team_icons/team_1_icon.dds',
@@ -1796,8 +1801,15 @@ local function TryLaunch(skipNoObserversCheck, skipSandboxCheck, skipTimeLimitCh
     
         -- set the mods
         gameInfo.GameMods = Mods.GetGameMods(gameInfo.GameMods)
-    
+
+        --profiling
+        LOG("<Profiling>:Starting Profiler")
+        profiler.startProfile()
         lobbyComm:LaunchGame(gameInfo)
+        LOG("<Profiling>:Stopping Profiler")
+        profiler.stopProfile()
+        LOG("<Profiling>:Profiled")
+        profiler.report("profiler.log")
     end
 
     if singlePlayer or HasCommandLineArg('/gpgnet') then
