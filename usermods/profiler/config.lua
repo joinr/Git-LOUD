@@ -8,8 +8,8 @@ TableHooks = {
   , { Identifier = "scenarioUtils", Table = import("/lua/sim/ScenarioUtilities.lua") }
   , { Identifier = "aiUtilities", Table = import("/lua/ai/aiutilities.lua") }
   , { Identifier = "formations", Table = import("/lua/formations.lua") }
-  -- , { Identifier = "table", Table = table }
-  -- , { Identifier = "math", Table = math }
+  , { Identifier = "table", Table = table }
+  , { Identifier = "math", Table = math }
 
 -- this one crashes atm
 --   , { Identifier = "Global" , Table = _G }

@@ -31,6 +31,25 @@ local CurrentSimSpeed = 0	-- record the current sim speed rate and use this to d
 -- Here's an opportunity for user side script to examine the Sync table for the new tick
 function OnSync()
 
+  -- manually patch in profiler hook for now..
+
+  -- copy sync data if present
+  if Sync.Profiler then 
+    if Sync.Profiler.TableCounters then 
+      import("/mods/profiler/modules/controller.lua").TableCountersFromSync(Sync.Profiler.TableCounters)
+    end
+
+    if Sync.Profiler.ClassCounters then 
+      import("/mods/profiler/modules/controller.lua").ClassCountersFromSync(Sync.Profiler.ClassCounters)
+    end
+
+    if Sync.Profiler.Benchmarks then 
+      import("/mods/profiler/modules/controller.lua").BenchmarksFromSync(Sync.Profiler.Benchmarks)
+    end    
+  end
+
+  
+
     if not tempty(Sync.CameraRequests) then
         import('/lua/UserCamera.lua').ProcessCameraRequests(Sync.CameraRequests)
     end

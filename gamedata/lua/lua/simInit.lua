@@ -106,6 +106,10 @@ function SetupSession()
     doscript(ScenarioInfo.save, ScenarioInfo.Env)
 
     ResetSyncTable()
+
+    --patched in pofiler support....this should be hooked but isn't working.
+    import("/mods/profiler/modules/sim/entrypoint.lua").SetupSession()
+    LOG("<PROFILER>----------StartupSession")
 end
 
 --# OnCreateArmyBrain() is called by the engine as the brains are created, and we
@@ -278,7 +282,17 @@ function BeginSession()
     ForkThread(import('/lua/aibrain.lua').CollectCurrentScores)
 
     -- start watching for victory conditions
-    ForkThread(import('/lua/victory.lua').CheckVictory, ScenarioInfo)	
+    ForkThread(import('/lua/victory.lua').CheckVictory, ScenarioInfo)
+
+    --splice in hook for profiler manually....
+    LOG("<PROFILER>----------BeginSession")
+    import("/mods/profiler/modules/sim/entrypoint.lua").BeginSession()
+    ForkThread(function()
+
+        -- wait for loading interference to subsede
+        WaitSeconds(2.0)
+        -- import("/mods/profiler/modules/benchmarking/controller.lua").RunAllBenchmarks()
+    end)
 end
 
 function OnPostLoad()
