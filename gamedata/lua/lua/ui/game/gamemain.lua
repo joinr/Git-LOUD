@@ -245,7 +245,15 @@ function CreateUI(isReplay)
    	import('/lua/gaz_ui/modules/keymapping.lua').Init()
 
 	-- this feature comes from BO Unleashed all credit to original author
-	import('/lua/spreadattack.lua').Init()	
+    import('/lua/spreadattack.lua').Init()
+
+    -- imgui support
+    LOG("<IMGUI>loading imgui")
+    local path = "dear-windowing";
+    local imgui = import('/mods/dear-windowing/modules/ui-entrypoint.lua')
+    --imgui.Entrypoint(isReplay)
+
+
 
     if GetNumRootFrames() > 1 then
         import('/lua/ui/game/multihead.lua').CreateSecondView()
