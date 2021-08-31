@@ -1,0 +1,9 @@
+name = "Profiler"
+uid = "profiler-01"
+icon = "/mods/profiler/icon.png"
+version = 1
+description = "A profiler to for performance tuning."
+author = "Jip"
+exclusive = false
+requires = { }
+ui_only = false

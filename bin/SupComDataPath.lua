@@ -67,6 +67,8 @@ mount_dir(InitFileDir .. '\\..\\..\\movies', '/movies')
 mount_dir(InitFileDir .. '\\..\\..\\fonts', '/fonts')
 mount_dir(InitFileDir .. '\\..\\..\\sounds', '/sounds')
 
+mount_dir(InitFileDir .. '\\..\\mods', '/mods')
+
 hook = {
     '/schook'
 }

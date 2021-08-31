@@ -1,0 +1,9 @@
+name = "Cinematics"
+uid = "cinematics-06"
+icon = "/mods/cinematics/icon.png"
+version = 6
+description = "Adds in all kind of useful features when creating cinematics."
+author = "Jip"
+exclusive = false
+requires = { "dear-windowing-09" }
+ui_only = true
